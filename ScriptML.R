@@ -21,7 +21,7 @@ library(praznik)
 library(randomForest)
 library(ada)
 
-bd <- read_excel("C:/Archivos_Luis/Estudios/Maestría/Materias/I Semestre/Machine Learning/Tarea/BD/default of credit card clients.xls", skip = 1)
+bd <- read_excel(".../default of credit card clients.xls", skip = 1)
 bd <- bd[,-1]
 View(bd)
 
@@ -90,19 +90,19 @@ str(bd)
 
 #Exploratario
 
-#correlación
+#correlaciÃ³n
 cor(bd[,-2:-4,])
 corrplot(cor(bd[,-2:-4]))
 corrplot.mixed(cor(bd[,-2:-4]))
 
-#Asimetría y Curtosis
+#AsimetrÃ­a y Curtosis
 apply(bd[,c(1,12:23)],2,kurtosis)
 apply(bd[,c(1,12:23)],2,skewness)
 
 #Normalidad
 apply(bd[,1:20],2,jarque.bera.test)
 
-#Gráficos
+#GrÃ¡ficos
 
 ggplot(data = bd) +
   aes(x = BAL)+
@@ -113,7 +113,7 @@ ggplot(data = train) +
   geom_histogram()
 
 #Outliers
-#usando la distancia euclidiana (si es mayor a 3 es un caso atípico)
+#usando la distancia euclidiana (si es mayor a 3 es un caso atÃ­pico)
 
 bd <- bd%>%
   mutate(out_BAL = abs(scale(bd$BAL)),
